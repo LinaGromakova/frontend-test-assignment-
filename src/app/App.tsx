@@ -1,5 +1,7 @@
+import { LoginForm } from '@/widgets';
+
 function App() {
-  return <>hello</>;
+  return <LoginForm></LoginForm>;
 }
 
 export default App;
