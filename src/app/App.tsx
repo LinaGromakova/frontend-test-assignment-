@@ -1,7 +1,8 @@
-import { LoginForm } from '@/widgets';
+import { RouterProvider } from 'react-router';
+import router from './router/Router';
 
 function App() {
-  return <LoginForm></LoginForm>;
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;

@@ -9,13 +9,13 @@ const LoginForm = () => {
     valueIdInstance: '',
     valueApiTokenInstance: '',
   });
-  const setAtoms = useSetAtom(greenApiStoreAtom);
+  const setGreenApiStore = useSetAtom(greenApiStoreAtom);
 
   return (
     <div className='h-dvh relative flex items-center'>
       <form
         action='#'
-        onSubmit={(e) => handlerSubmit(e, setAtoms, valuesLogin)}
+        onSubmit={(e) => handlerSubmit(e, setGreenApiStore, valuesLogin)}
         className='flex flex-col w-1/3 h-1/3 bg-blue-900/80 mx-auto text-white'
       >
         {LOGIN_CONFIG.map((field) => {
