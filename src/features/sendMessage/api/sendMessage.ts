@@ -1,15 +1,16 @@
+import type { MessageInterface } from '@/shared';
 const sendMessage = async (
   idInstance: string,
   apiTokenInstance: string,
   message: string,
   numberPhone: string,
+  setMessage: React.Dispatch<React.SetStateAction<MessageInterface[]>>,
 ) => {
   const url = `https://api.green-api.com/waInstance${idInstance}/sendMessage/${apiTokenInstance}`;
   const payload = {
     chatId: `${numberPhone}@c.us`,
     message: message,
   };
-
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -22,8 +23,11 @@ const sendMessage = async (
     if (!response.ok) {
       throw new Error(`Ошибка сервера: ${response.status}`);
     }
-
     const result = await response.json();
+    setMessage((prev) => [
+      ...prev,
+      { messageId: result.idMessage, content: message, isOtherSender: false },
+    ]);
     return result;
   } catch (error) {
     console.error('Ошибка в функции sendMessage:', error);

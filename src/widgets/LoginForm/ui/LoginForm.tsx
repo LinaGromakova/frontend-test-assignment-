@@ -3,6 +3,7 @@ import { useSetAtom } from 'jotai';
 import { useState } from 'react';
 import { handlerChange, handlerSubmit } from '../model/loginHandlers';
 import { LOGIN_CONFIG } from './LoginForm.config';
+import { useNavigate } from 'react-router';
 
 const LoginForm = () => {
   const [valuesLogin, setValuesLogin] = useState({
@@ -10,12 +11,15 @@ const LoginForm = () => {
     valueApiTokenInstance: '',
   });
   const setGreenApiStore = useSetAtom(greenApiStoreAtom);
-
+  const navigate = useNavigate();
   return (
     <div className='h-dvh relative flex items-center'>
       <form
         action='#'
-        onSubmit={(e) => handlerSubmit(e, setGreenApiStore, valuesLogin)}
+        onSubmit={(e) => {
+          handlerSubmit(e, setGreenApiStore, valuesLogin);
+          navigate('/');
+        }}
         className='flex flex-col w-1/3 h-1/3 bg-blue-900/80 mx-auto text-white'
       >
         {LOGIN_CONFIG.map((field) => {
@@ -30,6 +34,7 @@ const LoginForm = () => {
             ></FieldForm>
           );
         })}
+
         <BtnForm
           isDisabled={false}
           text='Submit'

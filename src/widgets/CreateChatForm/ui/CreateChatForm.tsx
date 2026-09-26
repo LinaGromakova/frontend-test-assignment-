@@ -1,9 +1,11 @@
 import { BtnForm, FieldForm, phoneNumberAtom } from '@/shared';
 import { useSetAtom } from 'jotai';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 const CreateChatForm = () => {
   const [telephoneValue, setTelephoneValue] = useState('');
+  const navigate = useNavigate();
   const setPhoneNumber = useSetAtom(phoneNumberAtom);
   return (
     <form
@@ -11,6 +13,7 @@ const CreateChatForm = () => {
       onSubmit={(e) => {
         e.preventDefault();
         setPhoneNumber(telephoneValue);
+        navigate('/chat');
       }}
     >
       <FieldForm
