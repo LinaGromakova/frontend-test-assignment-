@@ -1,4 +1,6 @@
+import { LoginForm } from '@/widgets';
+
 const LoginPage = () => {
-  return <>loginpage</>;
+  return <LoginForm></LoginForm>;
 };
 export default LoginPage;

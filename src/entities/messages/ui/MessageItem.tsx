@@ -1,0 +1,33 @@
+import clsx from 'clsx';
+import type { MessageInterface } from '@/shared';
+
+const MessageItem = ({ dataMessage }: { dataMessage: MessageInterface }) => {
+  return (
+    <article
+      className={clsx(
+        `px-2 py-1.25 max-w-120 min-h-8 text-base leading-6 w-21 text-white
+    shadow-[rgba(16,16,16,0.61)_0px_1px_2px_0px] rounded-t-[15px] relative`,
+        !dataMessage.isOtherSender
+          ? 'ml-auto rounded-bl-[15px] bg-main-accent'
+          : 'rounded-br-[15px] bg-main',
+      )}
+    >
+      {dataMessage.content}
+      <svg
+        width='9'
+        height='20'
+        className={clsx(
+          'absolute -bottom-0.75 ',
+          dataMessage.isOtherSender
+            ? 'rotate-y-180 fill-main -left-2'
+            : 'fill-main-accent -right-2',
+        )}
+      >
+        <path d='M6 17H0V0c.193 2.84.876 5.767 2.05 8.782.904 2.325 2.446 4.485 4.625 6.48A1 1 0 016 17z'></path>
+        <path d='M6 17H0V0c.193 2.84.876 5.767 2.05 8.782.904 2.325 2.446 4.485 4.625 6.48A1 1 0 016 17z'></path>
+      </svg>
+    </article>
+  );
+};
+
+export default MessageItem;

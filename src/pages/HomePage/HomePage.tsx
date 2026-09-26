@@ -1,4 +1,6 @@
+import { CreateChatForm } from '@/widgets';
+
 const HomePage = () => {
-  return <>homepage</>;
+  return <CreateChatForm></CreateChatForm>;
 };
 export default HomePage;
