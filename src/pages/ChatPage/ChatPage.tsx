@@ -1,8 +1,9 @@
-import { ChatFooter, MessageList } from '@/widgets';
+import { ChatFooter, ChatHeader, MessageList } from '@/widgets';
+
 const ChatPage = () => {
- 
   return (
-    <div className='h-screen items-stretch'>
+    <div className='flex flex-col w-full relative'>
+      <ChatHeader></ChatHeader>
       <MessageList></MessageList>
       <ChatFooter></ChatFooter>
     </div>

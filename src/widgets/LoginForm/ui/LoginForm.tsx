@@ -39,6 +39,9 @@ const LoginForm = () => {
           <BtnForm
             isDisabled={false}
             text='Готово'
+            handlerClick={() => {
+              return;
+            }}
           ></BtnForm>
         </div>
       </form>

@@ -23,6 +23,7 @@ const useSubscribeMessage = () => {
             headers: {
               Accept: 'application/json',
             },
+    
             signal: controller.signal,
           });
           if (!response.ok) {
@@ -34,10 +35,8 @@ const useSubscribeMessage = () => {
             continue;
           }
           const { receiptId, body } = notification;
-          console.log(body);
           if (body.typeWebhook === 'incomingMessageReceived') {
             const textMessage = body.messageData.textMessageData?.textMessage;
-            console.log(textMessage);
             if (textMessage) {
               setMessage((prev) => [
                 ...prev,
