@@ -13,15 +13,16 @@ const LoginForm = () => {
   const setGreenApiStore = useSetAtom(greenApiStoreAtom);
   const navigate = useNavigate();
   return (
-    <div className='h-dvh relative flex items-center'>
+    <div className='h-dvh relative flex items-center w-full justify-center'>
       <form
+        className='flex flex-col min-w-70 max-w-md bg-main px-6 pt-4 pb-4.75 rounded-4xl shadow-[rgba(16,16,16,0.61)_0px_4px_8px_2px] relative'
         action='#'
         onSubmit={(e) => {
           handlerSubmit(e, setGreenApiStore, valuesLogin);
           navigate('/');
         }}
-        className='flex flex-col w-1/3 h-1/3 bg-blue-900/80 mx-auto text-white'
       >
+        <h3 className='text-xl font-medium leading-7.5 mb-4'>Войти</h3>
         {LOGIN_CONFIG.map((field) => {
           const currentValue = valuesLogin[field.config.name];
           return (
@@ -34,11 +35,12 @@ const LoginForm = () => {
             ></FieldForm>
           );
         })}
-
-        <BtnForm
-          isDisabled={false}
-          text='Submit'
-        ></BtnForm>
+        <div className='ml-auto'>
+          <BtnForm
+            isDisabled={false}
+            text='Готово'
+          ></BtnForm>
+        </div>
       </form>
     </div>
   );

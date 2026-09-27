@@ -1,3 +1,6 @@
+import clsx from 'clsx';
+import { useId } from 'react';
+
 export interface FieldConfigInterface {
   type: string;
   min?: number;
@@ -11,7 +14,7 @@ interface FieldFormPropsInterface {
   label: string;
   config: FieldConfigInterface;
   onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string | number;
+  value: string;
 }
 
 const FieldForm = ({
@@ -20,16 +23,29 @@ const FieldForm = ({
   onChangeHandler,
   value,
 }: FieldFormPropsInterface) => {
+  const id = useId();
   return (
-    <label className='flex flex-col gap-1'>
-      {label}
+    <div className='group relative mb-4.5 group-focus-within:text-accent'>
       <input
         {...config}
-        className='[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-black px-2 py-1 rounded'
+        className='border border-[#5b5b5a] text-white
+  autofill:shadow-[inset_0_0_0_1000px_#212121] autofill:[-webkit-text-fill-color:white]
+  rounded-2xl h-12 w-full min-w-[384px] relative py-2.75 px-4.5 transition-colors outline-none group-hover:border-accent focus:border-accent focus:border-2'
+        id={id}
         value={value}
         onChange={onChangeHandler}
       />
-    </label>
+
+      <label
+        className={clsx(
+          'text-[#a2acb4] text-base absolute top-2.75 left-4.5 bg-main px transition-all group-hover:text-accent group-focus-within:text-accent group-focus-within:-translate-y-5 group-focus-within:scale-75 origin-top-left',
+          value.trim() && 'scale-75 -translate-y-5',
+        )}
+        htmlFor={id}
+      >
+        {label}
+      </label>
+    </div>
   );
 };
 

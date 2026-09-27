@@ -5,18 +5,16 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <HomePage />,
-  },
-  {
-    path: '/login',
-    element: <LoginPage />,
-  },
-  {
     children: [
       {
         path: '/chat',
         element: <ChatPage />,
       },
     ],
+  },
+  {
+    path: '/login',
+    element: <LoginPage />,
   },
 ]);
 export default router;

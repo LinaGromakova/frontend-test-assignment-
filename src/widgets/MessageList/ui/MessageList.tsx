@@ -5,7 +5,6 @@ import { useAtomValue } from 'jotai';
 const MessageList = () => {
   const messages = useAtomValue(messagesAtom);
   useSubscribeMessage();
-  console.log(messages);
   return (
     <div className='p-4'>
       {messages.map((message) => {
