@@ -1,4 +1,4 @@
-import { BtnForm, FieldForm, greenApiStoreAtom } from '@/shared';
+import { BtnForm, FieldForm, greenApiStoreAtom, useIsValid } from '@/shared';
 import { useSetAtom } from 'jotai';
 import { useState } from 'react';
 import { handlerChange, handlerSubmit } from '../model/loginHandlers';
@@ -12,6 +12,7 @@ const LoginForm = () => {
   });
   const setGreenApiStore = useSetAtom(greenApiStoreAtom);
   const navigate = useNavigate();
+  const isValid = useIsValid(LOGIN_CONFIG, valuesLogin);
   return (
     <div className='h-dvh relative flex items-center w-full justify-center'>
       <form
@@ -25,6 +26,7 @@ const LoginForm = () => {
         <h3 className='text-xl font-medium leading-7.5 mb-4'>Войти</h3>
         {LOGIN_CONFIG.map((field) => {
           const currentValue = valuesLogin[field.config.name];
+
           return (
             <FieldForm
               key={field.config.name}
@@ -37,7 +39,7 @@ const LoginForm = () => {
         })}
         <div className='ml-auto'>
           <BtnForm
-            isDisabled={false}
+            isDisabled={!isValid}
             text='Готово'
             handlerClick={() => {
               return;

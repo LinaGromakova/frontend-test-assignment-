@@ -3,15 +3,21 @@ import {
   FieldForm,
   phoneNumberAtom,
   showCreateChatFormAtom,
+  useIsValid,
 } from '@/shared';
 import { useSetAtom } from 'jotai';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+
 const CreateChatForm = () => {
   const [telephoneValue, setTelephoneValue] = useState('');
   const navigate = useNavigate();
   const setPhoneNumber = useSetAtom(phoneNumberAtom);
   const setShowChatForm = useSetAtom(showCreateChatFormAtom);
+  const isValid = useIsValid(
+    { type: 'tel', name: 'telephone', pattern: '^\\d{11,15}$' },
+    telephoneValue,
+  );
   return (
     <form
       action='#'
@@ -29,7 +35,7 @@ const CreateChatForm = () => {
       ></FieldForm>
       <div className='justify-end flex gap-x-2'>
         <BtnForm
-          isDisabled={false}
+          isDisabled={!isValid}
           handlerClick={() => {
             setShowChatForm(false);
             setPhoneNumber(telephoneValue);
