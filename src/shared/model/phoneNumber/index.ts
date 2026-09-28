@@ -1,1 +1,1 @@
-export { default } from './phoneNumberAtom';
+export { default } from './phoneNumberAtom.atoms';

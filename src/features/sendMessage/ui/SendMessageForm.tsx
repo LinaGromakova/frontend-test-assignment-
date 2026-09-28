@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
-import { greenApiStoreAtom, phoneNumberAtom } from '@/shared';
+import { CircleBtn, greenApiStoreAtom, phoneNumberAtom } from '@/shared';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { messagesAtom } from '@/entities';
 import { handleSubmit } from '../model/handleSubmit';
 import useIsEnterClick from '../hooks/useIsEnterClick';
+import SendMessageIcon from '../assets/SendMessageIcon.svg?react';
 
 const SendMessageForm = () => {
   const isSend = useIsEnterClick();
@@ -32,16 +33,24 @@ const SendMessageForm = () => {
 
   return (
     <form
+      action='#'
       onSubmit={(e) => {
         e.preventDefault();
-        executeSubmit();
       }}
+      className='relative flex my-4 justify-center items-center'
     >
       <input
         type='text'
         ref={inputRef}
+        placeholder='Сообщение'
+        className='w-full bg-main rounded-3xl h-12 px-8 pr-14 placeholder:text-[#a2acb4] text-base focus:outline-0 focus:border-0'
       />
-      <button type='submit'>Отправить</button>
+      <CircleBtn
+        handlerClick={() => executeSubmit()}
+        type='submit'
+        icon={<SendMessageIcon></SendMessageIcon>}
+        className='w-10 h-10 min-h-10 min-w-10 absolute right-0 mx-2'
+      ></CircleBtn>
     </form>
   );
 };

@@ -1,19 +1,19 @@
 import { messagesAtom } from '@/entities';
-import { greenApiStoreAtom } from '@/shared';
+import { greenApiStoreAtom, phoneNumberAtom } from '@/shared';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 
 const useSubscribeMessage = () => {
   const { idInstance, apiTokenInstance } = useAtomValue(greenApiStoreAtom);
   const setMessage = useSetAtom(messagesAtom);
-
+  const phoneNumber = useAtomValue(phoneNumberAtom);
   useEffect(() => {
     if (!idInstance || !apiTokenInstance) return;
     let isMounted = true;
     let controller: AbortController | null = null;
     const startPolling = async () => {
       const seconds = 20;
-       const receiveUrl = `https://api.green-api.com/waInstance${idInstance}/receiveNotification/${apiTokenInstance}?receiveTimeout=${seconds}`;
+      const receiveUrl = `https://api.green-api.com/waInstance${idInstance}/receiveNotification/${apiTokenInstance}?receiveTimeout=${seconds}`;
       while (isMounted) {
         try {
           controller = new AbortController();
@@ -34,10 +34,13 @@ const useSubscribeMessage = () => {
             continue;
           }
           const { receiptId, body } = notification;
-          console.log(body);
           if (body.typeWebhook === 'incomingMessageReceived') {
             const textMessage = body.messageData.textMessageData?.textMessage;
-            console.log(textMessage);
+            const date = new Date(body.timestamp * 1000);
+            const timeStr = date.toLocaleTimeString('ru-RU', {
+              hour: '2-digit',
+              minute: '2-digit',
+            });
             if (textMessage) {
               setMessage((prev) => [
                 ...prev,
@@ -45,6 +48,8 @@ const useSubscribeMessage = () => {
                   content: textMessage,
                   messageId: body.idMessage,
                   isOtherSender: true,
+                  senderName: body.senderData.senderName,
+                  senderAt: timeStr,
                 },
               ]);
             }
@@ -62,6 +67,6 @@ const useSubscribeMessage = () => {
       isMounted = false;
       if (controller) controller.abort();
     };
-  }, [idInstance, apiTokenInstance]);
+  }, [idInstance, apiTokenInstance, phoneNumber]);
 };
 export default useSubscribeMessage;
