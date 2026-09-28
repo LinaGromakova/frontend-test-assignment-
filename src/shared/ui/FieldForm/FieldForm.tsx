@@ -9,14 +9,12 @@ export interface FieldConfigInterface {
   name: string;
   pattern: string;
 }
-
 interface FieldFormPropsInterface {
   label: string;
   config: FieldConfigInterface;
   onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
 }
-
 const FieldForm = ({
   label,
   config,
@@ -35,7 +33,6 @@ const FieldForm = ({
         value={value}
         onChange={onChangeHandler}
       />
-
       <label
         className={clsx(
           'text-[#a2acb4] text-base absolute top-2.75 left-4.5 bg-main px transition-all group-hover:text-accent group-focus-within:text-accent group-focus-within:-translate-y-5 group-focus-within:scale-75 origin-top-left',

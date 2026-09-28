@@ -24,9 +24,18 @@ const sendMessage = async (
       throw new Error(`Ошибка сервера: ${response.status}`);
     }
     const result = await response.json();
+    const time = new Date().toLocaleTimeString('ru-RU', {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
     setMessage((prev) => [
       ...prev,
-      { messageId: result.idMessage, content: message, isOtherSender: false },
+      {
+        messageId: result.idMessage,
+        content: message,
+        isOtherSender: false,
+        senderAt: time,
+      },
     ]);
     return result;
   } catch (error) {

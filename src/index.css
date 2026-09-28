@@ -26,6 +26,6 @@ body::before {
   mask-size: 400px;
   -webkit-mask-repeat: repeat;
   mask-repeat: repeat;
-  background-color: rgba(73, 156, 238, 0.35);
+  background-color: rgba(73, 156, 238, 0.8);
   pointer-events: none;
 }
