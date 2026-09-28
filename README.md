@@ -2,7 +2,7 @@
 
 Результат выполнения тестового задания для **GREEN API**. Задача — разработать клиентское приложение для работы с инстансом Telegram, взяв за визуальную основу интерфейс **Telegram**. 
 
-**🔗 Ссылка на деплой (Vercel):** [frontend-test-assignment-seven.vercel.app](frontend-test-assignment-seven.vercel.app)
+**🔗 Ссылка на деплой (Vercel):** [https://frontend-test-assignment-seven.vercel.app/login](https://frontend-test-assignment-seven.vercel.app/login)
 
 
 ##  Визуальная часть и UX
