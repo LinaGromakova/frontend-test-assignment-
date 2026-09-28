@@ -28,7 +28,7 @@ const FieldForm = ({
         {...config}
         className='border border-[#5b5b5a] text-white
   autofill:shadow-[inset_0_0_0_1000px_#212121] autofill:[-webkit-text-fill-color:white]
-  rounded-2xl h-12 w-full min-w-[384px] relative py-2.75 px-4.5 transition-colors outline-none group-hover:border-accent focus:border-accent focus:border-2'
+  rounded-2xl h-12 w-full min-w-[384px] relative py-2.75 px-4.5 transition-colors outline-none group-hover:border-accent focus:border-accent focus:border-2 max-md:min-w-full'
         id={id}
         value={value}
         onChange={onChangeHandler}

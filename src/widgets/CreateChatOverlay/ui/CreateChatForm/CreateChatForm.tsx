@@ -2,6 +2,7 @@ import {
   BtnForm,
   FieldForm,
   phoneNumberAtom,
+  showChatAtom,
   showCreateChatFormAtom,
   useIsValid,
 } from '@/shared';
@@ -14,6 +15,7 @@ const CreateChatForm = () => {
   const navigate = useNavigate();
   const setPhoneNumber = useSetAtom(phoneNumberAtom);
   const setShowChatForm = useSetAtom(showCreateChatFormAtom);
+  const setShowChat = useSetAtom(showChatAtom);
   const isValid = useIsValid(
     { type: 'tel', name: 'telephone', pattern: '^\\d{11,15}$' },
     telephoneValue,
@@ -39,6 +41,7 @@ const CreateChatForm = () => {
           handlerClick={() => {
             setShowChatForm(false);
             setPhoneNumber(telephoneValue);
+            setShowChat(true);
             navigate('/chat');
           }}
           text='Создать'

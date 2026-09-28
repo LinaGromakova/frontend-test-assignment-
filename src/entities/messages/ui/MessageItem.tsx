@@ -1,11 +1,13 @@
 import clsx from 'clsx';
 import type { MessageInterface } from '@/shared';
 import AppendixSvg from './assets/Appendix.svg?react';
+import LoadingIcon from './assets/LoadingIcon.svg?react';
+import ErrorIcon from './assets/ErrorIcon.svg?react';
 const MessageItem = ({ dataMessage }: { dataMessage: MessageInterface }) => {
   return (
     <div className='flex items-end'>
       {dataMessage.isOtherSender && (
-        <div className='rounded-full bg-accent h-8.5 w-8.5 mr-2 mb-2 flex items-center justify-center text-xl font-bold'>
+        <div className='rounded-full bg-accent h-8.5 min-h-8.5 w-8.5 min-w-8.5 mr-2 mb-2 flex items-center justify-center text-xl font-bold'>
           {dataMessage.senderName && dataMessage.senderName.slice(0, 1)}
         </div>
       )}
@@ -34,6 +36,14 @@ const MessageItem = ({ dataMessage }: { dataMessage: MessageInterface }) => {
           <div className='mr-2'> {dataMessage.content}</div>
           <div className='relative text-[12px] text-white/50 -mb-1 ml-auto'>
             {dataMessage.senderAt}
+          </div>
+          <div>
+            {(dataMessage.status === 'loading' && (
+              <LoadingIcon className='ml-1'></LoadingIcon>
+            )) ||
+              (dataMessage.status === 'error' && (
+                <ErrorIcon className='ml-1'></ErrorIcon>
+              ))}
           </div>
         </div>
       </article>

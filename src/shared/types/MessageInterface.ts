@@ -4,4 +4,5 @@ export default interface MessageInterface {
   isOtherSender: boolean;
   senderName?: string;
   senderAt: string;
+  status?: 'error' | 'loading' | 'success';
 }

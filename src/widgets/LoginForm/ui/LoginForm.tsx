@@ -16,7 +16,7 @@ const LoginForm = () => {
   return (
     <div className='h-dvh relative flex items-center w-full justify-center'>
       <form
-        className='flex flex-col min-w-70 max-w-md bg-main px-6 pt-4 pb-4.75 rounded-4xl shadow-[rgba(16,16,16,0.61)_0px_4px_8px_2px] relative'
+        className='flex flex-col min-w-70 max-w-md bg-main px-6 pt-4 pb-4.75 rounded-4xl shadow-[rgba(16,16,16,0.61)_0px_4px_8px_2px] relative max-md:min-w-auto'
         action='#'
         onSubmit={(e) => {
           handlerSubmit(e, setGreenApiStore, valuesLogin);

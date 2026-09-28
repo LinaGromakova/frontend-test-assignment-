@@ -10,7 +10,7 @@ const MessageList = () => {
   useSubscribeMessage();
   useScrollToBottom(bottomElRef, messages);
   return (
-    <div className='px-50 w-full max-h-[80dvh] overflow-y-auto my-4 [-ms-overflow-style:none] scrollbar-width:none [&::-webkit-scrollbar]:hidden'>
+    <div className='px-50 w-full max-h-[80dvh] overflow-y-auto my-4 [-ms-overflow-style:none] scrollbar-width:none [&::-webkit-scrollbar]:hidden max-xl:px-8'>
       {messages.map((message) => {
         return (
           <MessageItem
